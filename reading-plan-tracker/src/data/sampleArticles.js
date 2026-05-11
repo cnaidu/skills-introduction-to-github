@@ -3,7 +3,29 @@ export const PUBLICATIONS = {
   economist: { name: 'The Economist', color: '#E3120B', abbr: 'ECON' },
   'new-yorker': { name: 'The New Yorker', color: '#2B2B2B', abbr: 'NYR' },
   athletic: { name: 'The Athletic', color: '#FF6B35', abbr: 'ATH' },
+  bloomberg: { name: 'Bloomberg', color: '#5A7EFF', abbr: 'BBG' },
+  ft: { name: 'Financial Times', color: '#B83A00', abbr: 'FT' },
 };
+
+const PUB_ALIASES = {
+  wsj: 'wsj',
+  'wall street journal': 'wsj',
+  economist: 'economist',
+  'the economist': 'economist',
+  'new yorker': 'new-yorker',
+  'the new yorker': 'new-yorker',
+  'new-yorker': 'new-yorker',
+  athletic: 'athletic',
+  'the athletic': 'athletic',
+  bloomberg: 'bloomberg',
+  bbg: 'bloomberg',
+  ft: 'ft',
+  'financial times': 'ft',
+};
+
+export function normalizePub(raw) {
+  return PUB_ALIASES[String(raw).toLowerCase().trim()] ?? 'wsj';
+}
 
 export const SAMPLE_ARTICLES = [
   {

@@ -1,7 +1,9 @@
 import { PUBLICATIONS } from '../data/sampleArticles';
 
+const FALLBACK_PUB = { name: 'Unknown', color: '#94a3b8', abbr: '?' };
+
 export function ArticleCard({ article, onRead, onSkip, onSave, position, total }) {
-  const pub = PUBLICATIONS[article.publication];
+  const pub = PUBLICATIONS[article.publication] ?? FALLBACK_PUB;
 
   return (
     <div className="article-card" key={article.id}>

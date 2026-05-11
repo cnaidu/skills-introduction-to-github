@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { normalizePub } from '../data/sampleArticles';
 
 const TEMPLATE = JSON.stringify({
   articles: [
     {
       id: 'unique-id-1',
       title: 'Article Title',
-      publication: 'wsj',
+      publication: 'WSJ',
       topic: 'Economy',
       summary: 'Brief summary of the article.',
       url: 'https://example.com',
@@ -28,7 +29,7 @@ export function ImportModal({ onImport, onClose }) {
       const normalized = articles.map((a, i) => ({
         id: a.id ?? `import-${Date.now()}-${i}`,
         title: a.title ?? 'Untitled',
-        publication: a.publication ?? 'wsj',
+        publication: normalizePub(a.publication ?? 'wsj'),
         topic: a.topic ?? 'General',
         summary: a.summary ?? '',
         url: a.url ?? '',
@@ -53,6 +54,7 @@ export function ImportModal({ onImport, onClose }) {
         <p className="modal-desc">
           Paste JSON from your article summarizing skill. Accepts{' '}
           <code>{'{"articles": [...]}'}</code> or a plain array.
+          Publications: WSJ, BBG, FT, Economist, Athletic, New Yorker.
         </p>
         <details className="template-details">
           <summary>Show expected format</summary>
